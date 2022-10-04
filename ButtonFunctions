@@ -1,0 +1,6 @@
+def BackSignUp():
+	windowS.hide()# back buttons to hide sign up page and show the review page
+	windowR.show()
+#
+def BackReview():
+	windowR.hide()# back button to hide review page 
