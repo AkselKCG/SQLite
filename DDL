@@ -1,0 +1,47 @@
+from guizero import App, Window, PushButton, Text, CheckBox, ListBox, TextBox, ButtonGroup, Picture, Combo, Box, info, Slider  #window is second form
+#
+# https://lawsie.github.io/guizero/app/
+#
+#This is needed for the sql database
+import sqlite3
+from sqlite3 import Error
+#Import SQL
+import os
+import os.path
+#Import datetime
+import datetime
+#
+#
+#Define the DDL SQL to make the tables
+#
+#
+#Tables created in database with the following details below
+sql = """
+CREATE TABLE "Customer_Table" ( 
+"CustomerID" INTEGER NOT NULL,
+"CustUser" TEXT,
+"CustPass" TEXT,
+"FirstName" TEXT,
+"SecondName" TEXT,
+"PostCode" TEXT,
+"AddressL1" TEXT,
+"AddressL2" TEXT,
+"AddressL3" TEXT,
+"EmailAddress" TEXT, 
+"PhoneNumber" INTEGER,
+PRIMARY KEY("CustomerID" AUTOINCREMENT)
+);
+CREATE TABLE "Review_Table" (
+"ReviewID"  INTEGER NOT NULL,
+"ReviewTopic" TEXT,
+"ReviewWriteUp" TEXT,
+"CustomerID"  INTEGER,
+PRIMARY KEY("ReviewID" AUTOINCREMENT),
+CONSTRAINT "CustomerID"  FOREIGN KEY("CustomerID") REFERENCES "Customer_Table"("CustomerID")
+);
+insert into Customer_Table (CustUser, CustPass, FirstName, SecondName, PostCode, AddressL1, AddressL2, AddressL3, EmailAddress, PhoneNumber) values ('AkJohn','ByeBye','Aksel', 'Kesici', 'Po87bf', 'Hampshire', 'Horndean' , 'AcornDrive' , 'Aksel.@outlook.com', '07961048778');
+insert into Customer_Table (CustUser, CustPass, FirstName, SecondName, PostCode, AddressL1, AddressL2, AddressL3, EmailAddress, PhoneNumber) values ('JohnAK','SeeBye','John', 'Hello', 'Po98tr', 'Sussex', 'Clanfield', 'Catherington', 'Shush.@outlook.com', '07482086114');
+insert into Customer_Table (CustUser, CustPass, FirstName, SecondName, PostCode, AddressL1, AddressL2, AddressL3, EmailAddress, PhoneNumber) values ('OscarJohn','WhyHow','Oscar', 'Yellow', 'Po76bs', 'Cornwall', 'Cowplain', 'Hazleton', 'Green.@outlook.com', '029745109117');
+insert into Review_Table (ReviewTopic, ReviewWriteUp, CustomerID) values ('Fuel', 'Bad Book', 1);
+"""
+#
