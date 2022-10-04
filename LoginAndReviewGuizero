@@ -1,0 +1,44 @@
+##
+#
+#################################
+# build main login window             #
+#################################
+app = App(title="BRITISH ARMY", height = 600) # guizero title 
+text_blank = Text(app, text=" ")
+text_blank = Text(app, text=" Welcome to Army recruitment centre ")
+text_blank = Text(app, text=" ")
+text = Text(app, text= "enter user name")
+user_textbox = TextBox(app)
+text_blank = Text(app, text=" ")
+text = Text(app, text= "enter user Password")
+PW_textbox = TextBox(app)   # text boxes that allow user to enter details into the required boxes
+#
+text_blank = Text(app, text=" ")
+text_blank = Text(app, text=" ")
+open_button = PushButton(app, text="log in", command=login_user) # button on app, main window
+app.bg = "dark green"
+text_blank = Text(app, text=" ")
+
+#
+#
+#################################
+# build review window             #
+#################################
+windowR = App(title="Leave Review Here", height = 600) # guizero title text 
+text_blank = Text(windowR, text=" ")
+text_blank = Text(windowR, text=" Welcome to the Review Page ")
+text_blank = Text(windowR, text=" ")
+text = Text(windowR, text= "Enter ReviewTopic")
+ReviewTopic_combo = Combo(windowR, options=["Holiday", "Product", "College", "Food"])
+text_blank = Text(windowR, text=" ")
+text = Text(windowR, text= "Enter ReviewWriteUp")
+ReviewText_textbox = TextBox(windowR, multiline = True, height = 20, width = 40)
+#
+text_blank = Text(windowR, text=" ")
+text_blank = Text(windowR, text=" ")
+open_button = PushButton(windowR, text="Save Review", command=Review_Save) # button on app, main window
+back_button = PushButton(windowR, text="Back", command=BackReview)
+app.bg = "dark green"
+text_blank = Text(windowR, text=" ")
+
+windowR.hide()
