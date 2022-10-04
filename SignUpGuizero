@@ -1,0 +1,47 @@
+#################################
+# build SignUp window             #
+#################################
+windowS= App(title="Create an Account Here", height = 600)# guizero title text 
+text_blank = Text(windowS, text=" ")
+text_blank = Text(windowS, text=" Welcome to the Sign Up Page ")
+text_blank = Text(windowS, text=" ")
+text = Text(windowS, text= "Enter New Username")
+userSignUp_textbox = TextBox(windowS)
+text = Text(windowS, text= "Enter New Password")
+PWSignUp_textbox = TextBox(windowS)
+text = Text(windowS, text= "Enter New FirstName")
+Firstname_textbox = TextBox(windowS)
+text = Text(windowS, text= "Enter New Surname")
+Surname_textbox =  TextBox(windowS)
+text = Text(windowS, text= "Enter New PostCode")
+Postcode_textbox = TextBox(windowS)
+text = Text(windowS, text= "Enter new Address Line 1") # guizero text that shows the user where to enter data
+AddressL1_textbox = TextBox(windowS)
+text = Text(windowS, text= "Enter New Address line 2")
+AddressL2_textbox = TextBox(windowS)
+text = Text(windowS, text= "Enter New Address line 3")
+AddressL3_textbox = TextBox(windowS)
+text = Text(windowS, text= "Enter New Email")
+Email_textbox =  TextBox(windowS)
+text = Text(windowS, text= "Enter New Date Of Birth")
+DateOFBirth_textbox =  TextBox(windowS)
+text = Text(windowS, text= "Enter New PhoneNumber")
+PhoneNumber_textbox=  TextBox(windowS)
+
+checkbox1 = checkbox = CheckBox(windowS, text="Do you accept the Terms and Conditions")
+
+
+#
+text_blank = Text(windowS, text=" ")
+text_blank = Text(windowS, text=" ")
+open_button = PushButton(windowS, text="Create Account", command=SignupButton) # button on app, main window
+back_button = PushButton(windowS, text="Back", command=BackSignUp )
+app.bg = "dark green"
+text_blank = Text(windowS, text=" ")
+windowS.hide()
+
+#
+#
+app.display() 
+
+
