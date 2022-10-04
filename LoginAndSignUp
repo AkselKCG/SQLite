@@ -1,0 +1,72 @@
+#
+#
+# login sql
+#
+def login_user():  #### TEST WITH 'or 1 = 1; -- 
+	global userID ## variable needed to know who logged in ##
+	if user_textbox.value == " ":
+		info("Error", "You must enter a valid username")
+	elif PW_textbox.value == " ":
+		info("Error", "You must enter a password")
+	else:
+		#
+		sqlselect = "SELECT * FROM Customer_Table WHERE CustUser = '"+user_textbox.value+"'"
+		rows = query_database(database_file, sqlselect)
+	if len(rows) == 0: ### This checks that the user was found ###
+		info("Error","User Not Found")
+	else:
+		if PW_textbox.value == rows[0][2]:
+			info("Log in","User Password is correct")
+			userID = rows[0][0]
+			windowR.show()
+			app.hide()
+		else:
+			info("Log in", "Passwords do not match")
+
+#
+#
+def SignupButton(): # function to allow user to enter their personal details # and will then decide whether to allow the user to proceed if their details match the criteria
+	global NewUserID# global variable for userID
+	global String_Encrypt_Password# GLOBAL variable for encrypt password
+	if userSignUp_textbox.value == "":
+		info("Error!", "You must enter a username") # error message because details dont match validation criteria
+	elif len(userSignUp_textbox.value) <= 3:
+		info("Error!", "Username must be longer than 3 characters")# error message because details dont match validation criteria
+	elif len(userSignUp_textbox.value) >= 15:
+		info("Error!", "Username must be below 15 characters")# error message because details dont match validation criteria
+	elif PWSignUp_textbox.value == "":
+		info("Error!", "You must enter a password")# error message because details dont match validation criteria
+	elif len(PWSignUp_textbox.value) <= 3:
+		info("Error!", "Password must be longer than 3 characters")# error message because details dont match validation criteria
+	elif len(PWSignUp_textbox.value) >= 15:
+		info("Error!", "Password must be below 15 characters")# error message because details dont match validation criteria
+	elif Firstname_textbox.value == "":
+		info("Error!", "You must enter a first name")# error message because details dont match validation criteria
+	elif Surname_textbox.value == "":
+		info("Error!", "You must enter a surname")# error message because details dont match validation criteria
+	elif Email_textbox.value == "":
+		info("Error!", "You must enter an email address")# error message because details dont match validation criteria
+	elif "@" and "." not in Email_textbox.value:
+		info("Error!", "Email must have a @ and '.'!")# error message because details dont match validation criteria
+	elif DateOFBirth_textbox.value == "":
+		info("Error!", "You must enter a date of birth")# error message because details dont match validation criteria
+	elif "/" not in DateOFBirth_textbox.value:
+		info("Error!", "Date of birth must be in this format DD/MM/YYYY")# error message because details dont match validation criteria
+	elif PhoneNumber_textbox.value == "":
+		info("Error!", "You must enter a password")# error message because details dont match validation criteria
+	elif len(PhoneNumber_textbox.value) == 11:
+		info("Error!", "Your number must be atleast 11 integers")# error message because details dont match validation criteria
+	elif Postcode_textbox.value == "":
+		info("Error!", "You have to enter a postcode")# error message because details dont match validation criteria
+	elif AddressL1_textbox.value == "":
+		info("Error!", "You have to enter an address line1")# error message because details dont match validation criteria
+	elif AddressL2_textbox.value == "":
+		info("Error!", "You have to enter an address line2")# error message because details dont match validation criteria
+	elif AddressL3_textbox.value == "":
+		info("Error!", "You have to enter an address line3")# error message because details dont match validation criteria
+	elif checkbox1.value == 0:
+		info("Error!", "in order to continue you have to accept the terms and conditions.")# error message because details dont match validation criteria
+	else:
+		sqlinsert = "insert into Customer_Table (CustUser, CustPass, FirstName, SecondName, PostCode, AddressL1, AddressL2, AddressL3, EmailAddress, PhoneNumber) values ('"+userSignUp_textbox.value+"','"+PWSignUp_textbox.value+"','"+Firstname_textbox.value+"', '"+ Surname_textbox.value+"', '"+Postcode_textbox.value+"', '"+AddressL1_textbox.value+"', '"+AddressL2_textbox.value+"' , '"+AddressL3_textbox.value+"' , '"+Email_textbox.value+"', '"+PhoneNumber_textbox.value+"');"
+		execute_sql(database_file, sqlinsert) # sql insert which checks if the data matches # execute sql code which will execute the database file
+		info("Success","Your account has been created")
