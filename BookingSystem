@@ -1,0 +1,28 @@
+def Booking_Pitches():
+	global User_Review
+	# work out today for DateBooked
+	today = date.today()
+	today = today.strftime("%d/%m/%Y, %H:%M") #format for todays date
+	DateB = today
+	#	
+	if DateRequired_textbox.value == "":
+		info("Error!", "You must enter a date Required for")# error message because details dont match validation criteria
+	else: 
+		DateRIsValid = validate_Date(DateRequired_textbox.value)
+	if DateRIsValid == False:
+		info("Error!", "Date Required for must be in this format DD/MM/YYYY")
+	elif TimeRequired_textbox.value == "":
+		info("Error!", "You must enter a Time Required")
+	elif ":" not in TimeRequired_textbox.value:
+		info("Error!", "Time Required must be in this format HH:MM")
+	elif PitchLocation_combo.value == "":
+		info("Error","You must enter a valid Location")# error message because details dont match validation criteria
+	elif PitchSize_combo.value == "":
+		info("Error","You must Enter your Size")
+	else:
+		sqlinsert = "insert into Astro_Booking (DateBooked, DateRequired, TimeRequired, LocationRequired, SizeRequired, CustomerID) values ('"+DateB+"','"+DateRequired_textbox.value+"', '"+TimeRequired_textbox.value+"','"+PitchLocation_combo.value+"', '"+ PitchSize_combo.value +"', '"+ str(userID) +"');"
+		execute_sql(database_file, sqlinsert)
+		info("Success","Your Booking has been saved")
+		windowS.show()
+		windowB.hide()
+#
