@@ -1,0 +1,10 @@
+def validate_Date(date_text): #From stackOverflow # remember : import from datetime import datetime
+	#validation of date
+	try:
+		#
+		datetime.strptime(date_text, '%d/%m/%Y') #Try and convert date text to a real date
+		return True
+	except ValueError:
+		info("Incorrect data format", "should be DD/MM/YYYY")
+		return False
+#
