@@ -1,0 +1,83 @@
+from guizero import App, Window, PushButton, Text, CheckBox, ListBox, TextBox, ButtonGroup, Picture, Combo, Box, info, Slider  #window is second form
+#
+#
+#This is needed for the sql database
+import sqlite3
+from sqlite3 import Error
+#Import SQL
+import os
+import os.path
+#Import datetime
+import datetime
+from datetime import date # need this to get date
+from datetime import datetime # needed for strptime()
+
+sql = """
+CREATE TABLE "Customer_Table" ( 
+"CustomerID" INTEGER NOT NULL,
+"CustUser" TEXT,
+"CustPass" TEXT,
+"FirstName" TEXT,
+"SecondName" TEXT,
+"EmailAddress" TEXT, 
+"PhoneNumber" INTEGER,
+"CustomerDOB" TEXT,
+PRIMARY KEY("CustomerID" AUTOINCREMENT)
+);
+CREATE TABLE "Astro_Booking" (
+"BookingID"  INTEGER NOT NULL,
+"DateBooked" TEXT,
+"DateRequired" TEXT,
+"TimeRequired"  INTEGER,
+"LocationRequired" TEXT,
+"SizeRequired" TEXT,
+"CustomerID" INTEGER,
+PRIMARY KEY("BookingID" AUTOINCREMENT),
+CONSTRAINT "CustomerID"  FOREIGN KEY("CustomerID") REFERENCES "Customer_Table"("CustomerID")
+);
+insert into Customer_Table (CustUser, CustPass, FirstName, SecondName,  EmailAddress, PhoneNumber, CustomerDOB) values ('AkJohn','ByeBye','Aksel', 'Kesici',  'Aksel.@outlook.com', '07961048778', '13/04/2005');
+insert into Customer_Table (CustUser, CustPass, FirstName, SecondName,  EmailAddress, PhoneNumber, CustomerDOB) values ('JohnAK','SeeBye','John', 'Hello',  'Shush.@outlook.com', '07482086114', '10/06/2005');
+insert into Customer_Table (CustUser, CustPass, FirstName, SecondName,  EmailAddress, PhoneNumber, CustomerDOB) values ('OscarJohn','WhyHow','Oscar', 'Yellow',  'Green.@outlook.com', '029745109117', '03/09/2001');
+insert into Astro_Booking (DateBooked, DateRequired, TimeRequired, LocationRequired, SizeRequired, CustomerID) values ('30/04/2023','02/05/2023','19:30','AkselsPitches','7ASide', 1);
+"""
+
+userID = 0
+#
+#
+database_file = 'AstroApp.db'
+
+
+if os.path.exists(database_file):
+   os.remove(database_file)
+#
+#Connect to the database
+conn = sqlite3.connect(database_file) #My connection is called 'conn'
+#Get a cursor pointing to the database
+cursor = conn.cursor() 
+#Create the tables
+cursor.executescript(sql) # creates from DDL above, script more than 1 command
+#Commit to save everything
+conn.commit()
+#Close the connection to the database
+#
+#Queries the database using the database parameter as the database
+#to query and the query parameter as the actual query to issue
+# for SELECT
+#
+def query_database(database, query):
+	Lconn = sqlite3.connect(database)
+	cur = Lconn.cursor()			# use a local cursor
+	cur.execute(query)
+	rows = cur.fetchall()
+	cur.close()
+	return rows
+#
+#
+#Executes the sql statement to INSERT and UPDATE rows
+#
+def execute_sql(database, sql_statement):
+	Lconn = sqlite3.connect(database)
+	cur = Lconn.cursor()
+	cur.execute(sql_statement)
+	Lconn.commit()
+	return cur.lastrowid
