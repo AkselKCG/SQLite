@@ -1,0 +1,14 @@
+##
+#################################
+# build main Menu window             #
+#################################
+MainMenu = App(title="AkselsPitches", height = 600)
+text_blank = Text(MainMenu, text=" ")
+text_blank = Text(MainMenu, text=" Welcome to the Pitch Booking System ")
+text_blank = Text(MainMenu, text=" ")
+login_button = PushButton(MainMenu, text="log in", command=login)
+text_blank = Text(MainMenu, text=" ")
+createButton = PushButton(MainMenu, text="Sign Up", command=Create_Account)
+MainMenu.bg ="#a8c0ff"
+text_blank = Text(MainMenu, text=" ")
+text_blank = Text(MainMenu, text=" ")
