@@ -36,7 +36,7 @@ text_blank = Text(windowS, text=" ")
 text_blank = Text(windowS, text=" ")
 open_button = PushButton(windowS, text="Create Account", command=SignupButton) # button on app, main window
 back_button = PushButton(windowS, text="Back", command=BackSignUp )
-app.bg = "dark green"
+windowS.bg = "dark green"
 text_blank = Text(windowS, text=" ")
 windowS.hide()
 
