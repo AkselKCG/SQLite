@@ -44,4 +44,26 @@ insert into Customer_Table (CustUser, CustPass, FirstName, SecondName, PostCode,
 insert into Customer_Table (CustUser, CustPass, FirstName, SecondName, PostCode, AddressL1, AddressL2, AddressL3, EmailAddress, PhoneNumber) values ('OscarJohn','WhyHow','Oscar', 'Yellow', 'Po76bs', 'Cornwall', 'Cowplain', 'Hazleton', 'Green.@outlook.com', '029745109117');
 insert into Review_Table (ReviewTopic, ReviewWriteUp, CustomerID) values ('Fuel', 'Bad Book', 1);
 """
+database_file = 'MyApp.db'
+#
+userID = 0
+#
+#
+#
+#Delete the database, only if it exists
+#
+#
+if os.path.exists(database_file):
+   os.remove(database_file)
+#
+#Connect to the database
+conn = sqlite3.connect(database_file) #My connection is called 'conn'
+#Get a cursor pointing to the database
+cursor = conn.cursor() 
+#Create the tables
+cursor.executescript(sql) # creates from DDL above, script more than 1 command
+#Commit to save everything
+conn.commit()
+#Close the connection to the database
+#
 #
