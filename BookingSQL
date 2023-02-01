@@ -20,7 +20,7 @@ CREATE TABLE "Customer_Table" (
 "FirstName" TEXT,
 "SecondName" TEXT,
 "EmailAddress" TEXT, 
-"PhoneNumber" INTEGER,
+"PhoneNumber" TEXT,
 "CustomerDOB" TEXT,
 PRIMARY KEY("CustomerID" AUTOINCREMENT)
 );
